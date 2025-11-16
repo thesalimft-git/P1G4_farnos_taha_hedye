@@ -1,12 +1,12 @@
-# tasks = [
-#     {'title': 'buy food', 'status': 'pendign,done,deleted'}
-#     {'title': 'buy food', 'status': 'pendign,done,deleted'}
-#     {'title': 'buy food', 'status': 'pendign,done,deleted'}
-# ]
+tasks = [
+    {'title': 'buy food', 'status': 'pendign'},
+    {'title': 'call mom', 'status': 'completed'},
+    {'title': 'post packet', 'status': 'deleted'}
+]
 
 
 
-tasks = []
+# tasks = []
 
 def show_menu():
     print('1- add task')
