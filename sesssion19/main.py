@@ -1,14 +1,19 @@
-tasks = [
-    {'title': 'buy food', 'status': 'pendign'},
-    {'title': 'call mom', 'status': 'completed'},
-    {'title': 'post packet', 'status': 'deleted'}
-]
+# tasks = [
+#     {'title': 'buy food', 'status': 'pendign'},
+#     {'title': 'call mom', 'status': 'completed'},
+#     {'title': 'post packet', 'status': 'deleted'}
+# ]
 
 
+import data_manager
 
-# tasks = []
+tasks = data_manager.get()
+if not tasks:
+    tasks = []
+    
 
 def show_menu():
+    print('\n\n\n-------------------')
     print('1- add task')
     print('2- view task')
     print('3- complete task')
@@ -26,15 +31,22 @@ def add_task():
     print('task is added')
     
 def view_task():
-    for item in tasks:
-        print(f'1- {item.get('title')} ({item.get('status')})')
+    for index, item in enumerate(tasks):
+        if item['status'] != 'deleted':
+            print(f'({index})- {item.get('title')} ({item.get('status')})')
         
 
 def complete_task():
-    pass
+    view_task()
+    task_id = int(input('which task to complete: '))
+    tasks[task_id]['status'] = 'completed'
+    
+
 
 def delete_task():
-    pass
+    view_task()
+    task_id = int(input('which task to delete: '))
+    tasks[task_id]['status'] = 'deleted'
 
 def main():
     while True:
@@ -50,16 +62,10 @@ def main():
             case '4':
                 delete_task()
             case '5':
+                data_manager.set(tasks)
                 break
             case _:
                 print('invalid input')
 
 main()
-
-
-
-# 1- buy food (pending)
-# 2- buy food (pending)
-# [{'title': 'buy food', 'status': 'pending'},
-#  {'title': 'call mom', 'status': 'pending'}]
 
